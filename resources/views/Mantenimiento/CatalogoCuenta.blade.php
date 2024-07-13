@@ -18,19 +18,25 @@
                             <th>Codigo Contable</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
+                            <th>Tipo de Cuenta</th>
+                            <th>Cuenta Origen</th>
+                            <th>Usuario</th>
                             <th class="d-none d-sm-table-cell">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($ResulCatalogo as $Catalogo)
                             <tr>
-                                <td>{{ $Catalogo['CAT_ID'] }}</td>
-                                <td>{{ $Catalogo['CAT_CODIGO'] }}</td>
-                                <td>{{ $Catalogo['CAT_NOMBRE'] }}</td>
-                                <td>{{ $Catalogo['CAT_DESCRIPCION'] }}</td>
+                                <td>{{ $Catalogo['ID_CUENTA'] }}</td>
+                                <td>{{ $Catalogo['CODIGO'] }}</td>
+                                <td>{{ $Catalogo['NOMBRE'] }}</td>
+                                <td>{{ $Catalogo['DESCRIPCION'] }}</td>
+                                <td>{{ $Catalogo['TIPO_CUENTA'] }}</td>
+                                <td>{{ $Catalogo['NOMBRE_PADRE'] }}</td>
+                                <td>{{ $Catalogo['Usuario'] }}</td>
                                 <td class="d-none d-sm-table-cell">
-                                    <a href="{{ url('/UpdateFormTel/'.$Catalogo['CAT_ID']) }}" class="btn btn-info editar-btn">Editar</a>
-                                    <form method="POST" action="{{ url('/EliminarCatalogo/'.$Catalogo['CAT_ID']) }}" style="display: inline;">
+                                    <a href="{{ url('/UpdateFormTel/'.$Catalogo['ID_CUENTA']) }}" class="btn btn-info editar-btn">Editar</a>
+                                    <form method="POST" action="{{ url('/EliminarCatalogo/'.$Catalogo['ID_CUENTA']) }}" style="display: inline;">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger borrar-btn">Borrar</button>
