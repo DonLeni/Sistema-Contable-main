@@ -3,7 +3,7 @@
 @section('title', 'Villas Las Acacias')
 
 @section('content_header')
-    <h1>Catalogo de Cuentas</h1>
+    <h1>Tipo de Cuentas</h1>
 
 @stop
 
@@ -11,32 +11,24 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="Catalogo" class="table">
+                <table id="TipoCuenta" class="table">
                     <thead class="thead-info">
                         <tr>
-                            <th>ID</th>
+                            <th>Codigo ID</th>
                             <th>Codigo Contable</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Tipo de Cuenta</th>
-                            <th>id Padre</th>
-                            <th>Usuario</th>
                             <th class="d-none d-sm-table-cell">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($ResulCatalogoEdit as $Catalogo)
+                        @foreach($ResulTipoCuenta as $tipocuenta)
                             <tr>
-                                <td>{{ $Catalogo['id_catalogo'] }}</td>
-                                <td>{{ $Catalogo['codigo'] }}</td>
-                                <td>{{ $Catalogo['nombre'] }}</td>
-                                <td>{{ $Catalogo['descripcion'] }}</td>
-                                <td>{{ $Catalogo['id_tipo_cuenta'] }}</td>
-                                <td>{{ $Catalogo['padre_id'] }}</td>
-                                <td>{{ $Catalogo['id'] }}</td>
+                                <td>{{ $tipocuenta['id_tipo_cuenta'] }}</td>
+                                <td>{{ $tipocuenta['codigo'] }}</td>
+                                <td>{{ $tipocuenta['nombre'] }}</td>
                                 <td class="d-none d-sm-table-cell">
-                                    <a href="{{ url('/UpdateFormTel/'.$Catalogo['id_catalogo']) }}" class="btn btn-info editar-btn">Editar</a>
-                                    <form method="POST" action="{{ url('/EliminarCatalogo/'.$Catalogo['id_catalogo']) }}" style="display: inline;">
+                                    <a href="{{ url('/UpdateFormTel/'.$tipocuenta['id_tipo_cuenta']) }}" class="btn btn-info editar-btn">Editar</a>
+                                    <form method="POST" action="{{ url('/Eliminartipocuenta/'.$tipocuenta['id_tipo_cuenta']) }}" style="display: inline;">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger borrar-btn">Borrar</button>
@@ -65,7 +57,7 @@
     <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
     <script>
         $(document).ready(function() {
-            $('#Catalogo').DataTable({
+            $('#tipocuenta').DataTable({
                 language: {
                     lengthMenu: "Mostrar _MENU_ registros por página",
                     zeroRecords: "Ningún objeto encontrado",

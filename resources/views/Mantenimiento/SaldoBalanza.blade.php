@@ -3,7 +3,7 @@
 @section('title', 'Villas Las Acacias')
 
 @section('content_header')
-    <h1>Catalogo de Cuentas</h1>
+    <h1>Cuentas</h1>
 
 @stop
 
@@ -11,32 +11,33 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="Catalogo" class="table">
+                <table id="SaldoBalanza" class="table">
                     <thead class="thead-info">
                         <tr>
-                            <th>Codigo ID</th>
-                            <th>Codigo Contable</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Tipo de Cuenta</th>
-                            <th>Cuenta Origen</th>
-                            <th>Usuario</th>
+                            <th>Id</th>
+                            <th>Id Catalogo</th>
+                            <th>Fecha</th>
+                            <th>Saldo Inicial</th>
+                            <th>Debito</th>
+                            <th>Credito</th>
+                            <th>Saldo Final</th>
                             <th class="d-none d-sm-table-cell">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($ResulCatalogo as $Catalogo)
+                        @foreach($ResulSaldoBalanza as $SaldoB)
                             <tr>
-                                <td>{{ $Catalogo['ID_CUENTA'] }}</td>
-                                <td>{{ $Catalogo['CODIGO'] }}</td>
-                                <td>{{ $Catalogo['NOMBRE'] }}</td>
-                                <td>{{ $Catalogo['DESCRIPCION'] }}</td>
-                                <td>{{ $Catalogo['TIPO_CUENTA'] }}</td>
-                                <td>{{ $Catalogo['NOMBRE_PADRE'] }}</td>
-                                <td>{{ $Catalogo['Usuario'] }}</td>
+                                <td>{{ $SaldoB['id_saldo_balanza'] }}</td>
+                                <td>{{ $SaldoB['id_catalogo'] }}</td>
+                                <td>{{ $SaldoB['fecha_balance'] }}</td>
+                                <td>{{ $SaldoB['saldo_inicial'] }}</td>
+                                <td>{{ $SaldoB['debitos'] }}</td>
+                                <td>{{ $SaldoB['creditos'] }}</td>
+                                <td>{{ $SaldoB['saldo_final'] }}</td>
+
                                 <td class="d-none d-sm-table-cell">
-                                    <a href="{{ url('/UpdateFormTel/'.$Catalogo['ID_CUENTA']) }}" class="btn btn-info editar-btn">Editar</a>
-                                    <form method="POST" action="{{ url('/EliminarCatalogo/'.$Catalogo['ID_CUENTA']) }}" style="display: inline;">
+                                    <a href="{{ url('/UpdateFormTel/'.$SaldoB['id_saldo_balanza']) }}" class="btn btn-info editar-btn">Editar</a>
+                                    <form method="POST" action="{{ url('/EliminarSaldoBalanza/'.$SaldoB['id_saldo_balanza']) }}" style="display: inline;">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger borrar-btn">Borrar</button>
@@ -65,7 +66,7 @@
     <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
     <script>
         $(document).ready(function() {
-            $('#Catalogo').DataTable({
+            $('#SaldoBalanza').DataTable({
                 language: {
                     lengthMenu: "Mostrar _MENU_ registros por página",
                     zeroRecords: "Ningún objeto encontrado",

@@ -3,53 +3,89 @@
 @section('title', 'Villas Las Acacias')
 
 @section('content_header')
+    <h1>Catalogo de Cuentas</h1>
+
 @stop
 
 @section('content')
-    
-
-@stop
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="Catalogo" class="table">
+                    <thead class="thead-info">
+                        <tr>
+                            <th>Codigo ID</th>
+                            <th>Codigo Contable</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Tipo de Cuenta</th>
+                            <th>Cuenta Origen</th>
+                            <th>Usuario</th>
+                            <th class="d-none d-sm-table-cell">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($ResulCatalogo as $Catalogo)
+                            <tr>
+                                <td>{{ $Catalogo['ID_CUENTA'] }}</td>
+                                <td>{{ $Catalogo['CODIGO'] }}</td>
+                                <td>{{ $Catalogo['NOMBRE'] }}</td>
+                                <td>{{ $Catalogo['DESCRIPCION'] }}</td>
+                                <td>{{ $Catalogo['TIPO_CUENTA'] }}</td>
+                                <td>{{ $Catalogo['NOMBRE_PADRE'] }}</td>
+                                <td>{{ $Catalogo['Usuario'] }}</td>
+                                <td class="d-none d-sm-table-cell">
+                                    <a href="{{ url('/UpdateFormTel/'.$Catalogo['ID_CUENTA']) }}" class="btn btn-info editar-btn">Editar</a>
+                                    <form method="POST" action="{{ url('/EliminarCatalogo/'.$Catalogo['ID_CUENTA']) }}" style="display: inline;">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger borrar-btn">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-    <style>
-        .dark-mode .bg-light {
-            background-color: #343a40 !important;
-            color: #f8f9fa !important;
-        }
-        .dark-mode .navbar-white {
-            background-color: #343a40 !important;
-            color: #f8f9fa !important;
-        }
-    </style>
+    {{-- Estilos adicionales --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.min.css">
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    {{-- Scripts adicionales --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
     <script>
-        // Ejemplo de JavaScript para deshabilitar el envío de formularios si hay campos no válidos
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
-                var forms = document.getElementsByClassName('needs-validation');
-                // Bucle sobre ellos y evitar el envío
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+        $(document).ready(function() {
+            $('#Catalogo').DataTable({
+                language: {
+                    lengthMenu: "Mostrar _MENU_ registros por página",
+                    zeroRecords: "Ningún objeto encontrado",
+                    info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
+                    infoEmpty: "Ningún objeto encontrado",
+                    infoFiltered: "(filtrados desde _MAX_ registros totales)",
+                    search: "Buscar:",
+                    loadingRecords: "Cargando..."
+                }
+            });
+        });
 
+        // Toastr
+        var toastr = toastr || {};
+        @if(session('success'))
+            toastr.success('{{ session('success') }}');
+        @endif
+
+        @if(session('error'))
+            toastr.error('{{ session('error') }}');
+        @endif
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @stop

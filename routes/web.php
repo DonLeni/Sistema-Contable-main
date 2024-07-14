@@ -9,8 +9,9 @@ use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\SubCuentaController;
 use App\Http\Controllers\SubSubCuentaController;
 use App\Http\Controllers\TipoAsientoController;
-
-use App\Http\Controllers\TransaccionController;
+use App\Http\Controllers\TipoCuentaController;
+use App\Http\Controllers\DetalleTransaccionController;
+use App\Http\Controllers\SaldoBalanzaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,9 +40,25 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
 // Ruta para seleccionar Catalogo de cuenta
 Route::get('/CatalogoCuentas', [CatalogoController::class, 'index'])->name('catalogocuenta.index');
-
+// Ruta para seleccionar Catalogo de cuenta
+Route::get('/CatalogoEdit', [CatalogoController::class, 'indexEdit'])->name('catalogocuenta.indexEdit');
 // Ruta para seleccionar cuenta
-Route::get('/Cuentas', [CuentaController::class, 'index'])->name('cuenta.index');
+Route::get('/TipoCuentaEdit', [TipoCuentaController::class, 'index'])->name('tipocuenta.index');
+// Ruta para seleccionar cuenta
+Route::get('/DetalleTransaccionEdit', [DetalleTransaccionController::class, 'index'])->name('deatlletransaccion.index');
+// Ruta para seleccionar cuenta
+Route::get('/SaldoBalanzaEdit', [SaldoBalanzaController::class, 'index'])->name('saldobalanza.index');
+
+
+
+
+
+
+
+
+
+
+
 
 // Ruta para seleccionar SUBcuenta
 Route::get('/subcuentas', [SubCuentaController::class, 'index'])->name('subcuenta.index');

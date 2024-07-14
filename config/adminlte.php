@@ -378,6 +378,12 @@ return [
             'icon' => 'fa-duotone fa fa-wallet',
             'submenu' => [
                 [
+                    'text' => 'Ver Catalogo',
+                    'icon' => 'fas fa-fw fa-sharp fa-light fa-check',
+                    'icon_color' => 'teal',
+                    'url' => '/CatalogoCuentas',
+                ],
+                [
                     'text' => 'Registro de Transacciones',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-check',
                     'icon_color' => 'teal',
@@ -410,17 +416,17 @@ return [
             'icon' => 'fas fa-fw fa-sharp fa-ligh fa fa-cogs',
             'submenu' => [
                 [
-                    'text' => 'Residente',
+                    'text' => 'Detalle Transaccion',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-pen',
                     'icon_color' => 'teal',
-                    'url' => 'Residente',
+                    'url' => '/DetalleTransaccionEdit',
                 ],
                 
                 [
-                    'text' => 'Tipo de pago',
+                    'text' => 'Balanza de Saldos',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-pen',
                     'icon_color' => 'teal',
-                    'url' => '#',
+                    'url' => '/SaldoBalanzaEdit',
                 ],
                 [
                     'text' => 'Tipo de movimiento',
@@ -439,14 +445,14 @@ return [
                     'text' => 'Cuentas',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-pen',
                     'icon_color' => 'teal',
-                    'url' => '/Cuentas',
+                    'url' => '/TipoCuentaEdit',
                 ],
                 
                 [
                     'text' => 'Catalogo de cuenta',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-pen',
                     'icon_color' => 'teal',
-                    'url' => '/CatalogoCuentas',
+                    'url' => '/CatalogoEdit',
                 ],
                 [
                     'text' => 'Sub-Cuentas',

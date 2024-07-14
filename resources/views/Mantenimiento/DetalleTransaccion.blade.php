@@ -3,7 +3,7 @@
 @section('title', 'Villas Las Acacias')
 
 @section('content_header')
-    <h1>Cuentas</h1>
+    <h1>Tipo de Cuentas</h1>
 
 @stop
 
@@ -11,27 +11,34 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="SubCuenta" class="table">
+                <table id="detalletransaccion" class="table">
                     <thead class="thead-info">
                         <tr>
-                            <th>Codigo ID</th>
-                            <th>Codigo Contable</th>
-                            <th>Nombre</th>
+                            <th>ID</th>
+                            <th>ID contable</th>
+                            <th>Fecha</th>
                             <th>Descripcion</th>
+                            <th>Movimiento</th>
+                            <th>Monto</th>
+                            <th>Creacion</th>
+                            <th>Actualizacion</th>
                             <th class="d-none d-sm-table-cell">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($ResulSubCuenta as $SubCuenta)
+                        @foreach($ResulDetalleTransaccion as $detalletransaccion)
                             <tr>
-                                <td>{{ $SubCuenta['SCTA_ID'] }}</td>
-                                <td>{{ $SubCuenta['SCTA_CODIGO'] }}</td>
-                                <td>{{ $SubCuenta['SCTA_NOMBRE'] }}</td>
-                                <td>{{ $SubCuenta['SCTA_DESCRIPCION'] }}</td>
-
+                                <td>{{ $detalletransaccion['id_detalle'] }}</td>
+                                <td>{{ $detalletransaccion['id_catalogo'] }}</td>
+                                <td>{{ $detalletransaccion['fecha'] }}</td>
+                                <td>{{ $detalletransaccion['descripcion'] }}</td>
+                                <td>{{ $detalletransaccion['tipo_movimiento'] }}</td>
+                                <td>{{ $detalletransaccion['monto'] }}</td>
+                                <td>{{ $detalletransaccion['created_at'] }}</td>
+                                <td>{{ $detalletransaccion['updated_at'] }}</td>
                                 <td class="d-none d-sm-table-cell">
-                                    <a href="{{ url('/UpdateFormTel/'.$SubCuenta['SCTA_ID']) }}" class="btn btn-info editar-btn">Editar</a>
-                                    <form method="POST" action="{{ url('/EliminarSubCuenta/'.$SubCuenta['SCTA_ID']) }}" style="display: inline;">
+                                    <a href="{{ url('/UpdateFormTel/'.$detalletransaccion['id_detalle']) }}" class="btn btn-info editar-btn">Editar</a>
+                                    <form method="POST" action="{{ url('/Eliminardetalletransaccion/'.$detalletransaccion['id_detalle']) }}" style="display: inline;">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger borrar-btn">Borrar</button>
@@ -60,7 +67,7 @@
     <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
     <script>
         $(document).ready(function() {
-            $('#SubCuenta').DataTable({
+            $('#detalletransaccion').DataTable({
                 language: {
                     lengthMenu: "Mostrar _MENU_ registros por página",
                     zeroRecords: "Ningún objeto encontrado",

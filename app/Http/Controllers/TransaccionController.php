@@ -36,11 +36,13 @@ class TransaccionController extends Controller
             $DatoSubSubCuenta = $response->json();
 
              // Llamada a la API para obtener las Catalogo
-             $response = Http::get("$this->serverapi/catalogo-cuentas");
-             $DatosCatalogoCuentas = $response->json();
+             $response = Http::get("$this->serverapi/catalogoEdit");
+             $DatosCatalogoEdit = $response->json();
+
+
         
             // Retornar la vista con los datos obtenidos
-            return view('Contabilidad.RegistroTransacciones', compact('tiposAsiento', 'DatoCuenta', 'DatoSubCuenta', 'DatoSubSubCuenta','DatosCatalogoCuentas'));
+            return view('Contabilidad.RegistroTransacciones', compact('tiposAsiento', 'DatoCuenta', 'DatoSubCuenta', 'DatoSubSubCuenta','DatosCatalogoCuentas','DatosCatalogoEdit'));
         }
         
 
