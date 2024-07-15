@@ -322,6 +322,13 @@ return [
             'label' => 'Regresar',
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Editar Perfil',
+            'url' => '/profile/edit',
+            'icon' => 'fas fa-fw fa-sharp fa-light fa-user',
+            'label' => 'Usuario',
+            'label_color' => 'success',
+        ],
         ['header' => 'Menu'],
         [
             'text' => 'Administracion',
@@ -675,7 +682,7 @@ return [
             'fullscreen' => true,
         ],
         'options' => [
-            'loading_screen' => 1000,
+            'loading_screen' => 100,
             'auto_show_new_tab' => true,
             'use_navbar_items' => true,
         ],

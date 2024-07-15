@@ -1,149 +1,133 @@
 @extends('adminlte::page')
 
-@section('title', 'Villas Las Acacias')
+@section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>Villas Las Acacias</h1>
 @stop
 
 @section('content')
-    
-<div class="row">
-    <div class="col mt-5">
-        <h1 class="display-4">¡Bienvenido!</h1>
-        <p class="lead">¡Hola! Somos el equipo fundador de Digital Solution, estudiantes de la Universidad Autónoma Nacional de Honduras (UNAH), desarrolladores de software dedicados a proporcionar soluciones digitales personalizadas para satisfacer las necesidades de nuestros clientes. Nos especializamos en el diseño y desarrollo de sistemas de facturación, gestión de inventario, aplicaciones web y más, utilizando las últimas tecnologías para ofrecer resultados de calidad.</p>
-    </div>
-</div>
-
-<h2>Formulario de Ejemplo</h2>
-<form class="needs-validation" novalidate>
-    <!-- Nombre -->
-    <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
-        <div class="invalid-feedback">
-            Por favor, ingrese su nombre.
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Bienvenido al Sistema Contable</h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-info mb-3" type="button" data-toggle="collapse" data-target="#infoContent" aria-expanded="false" aria-controls="infoContent">
+                            Información
+                        </button>
+                        <div id="infoContent" class="collapse">
+                            <h1 class="display-4">¡Bienvenido!</h1>
+                            <p class="lead">Somos el equipo fundador de Digital Solution, estudiantes de la Universidad Autónoma Nacional de Honduras (UNAH), dedicados a proporcionar soluciones digitales personalizadas para satisfacer las necesidades de nuestros clientes. Nos especializamos en el diseño y desarrollo de sistemas de facturación, gestión de inventario, aplicaciones web y más, utilizando las últimas tecnologías para ofrecer resultados de calidad.</p>
+                            <p class="lead">En este ambiente web, puedes gestionar todas tus cuentas contables de manera eficiente y segura. Nuestro sistema permite registrar y seguir todas las transacciones financieras, asegurando que tu contabilidad esté siempre al día.</p>
+                            <p class="lead">Además, proporcionamos herramientas avanzadas para la generación de informes financieros, análisis de datos y auditoría. Con nuestros gráficos interactivos y detallados, puedes visualizar el estado financiero de tu empresa y tomar decisiones informadas para su crecimiento y desarrollo.</p>
+                           
+                            
+                            <div class="mt-4">
+                                <h3>Gráficos de Estados Financieros</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <canvas id="balanceChart"></canvas>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <canvas id="incomeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Añadir iconos o secciones adicionales según sea necesario -->
     </div>
-    <!-- Correo Electrónico -->
-    <div class="form-group">
-        <label for="correo">Correo Electrónico</label>
-        <input type="email" class="form-control" id="correo" required>
-        <div class="invalid-feedback">
-            Por favor, ingrese un correo electrónico válido.
-        </div>
-    </div>
-    <!-- Contraseña -->
-    <div class="form-group">
-        <label for="contrasena">Contraseña</label>
-        <input type="password" class="form-control" id="contrasena" required>
-        <div class="invalid-feedback">
-            Por favor, ingrese una contraseña.
-        </div>
-    </div>
-    <!-- Teléfono -->
-    <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input type="tel" class="form-control" id="telefono" required>
-        <div class="invalid-feedback">
-            Por favor, ingrese su número de teléfono.
-        </div>
-    </div>
-    <!-- Dirección -->
-    <div class="form-group">
-        <label for="direccion">Dirección</label>
-        <input type="text" class="form-control" id="direccion" required>
-        <div class="invalid-feedback">
-            Por favor, ingrese su dirección.
-        </div>
-    </div>
-    <!-- Aceptar Términos -->
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="terminos" required>
-        <label class="form-check-label" for="terminos">Aceptar términos y condiciones</label>
-        <div class="invalid-feedback">
-            Debe aceptar los términos y condiciones.
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
-
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Other navbar items -->
-
-  <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-      <!-- Theme toggle button -->
-      <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="fas fa-adjust"></i> Cambiar Tema
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-              <a id="theme-toggle" class="dropdown-item" href="#">Toggle Dark/Light</a>
-          </div>
-      </li>
-  </ul>
-</nav>
-<!-- /.navbar -->
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
     <link rel="stylesheet" href="/css/admin_custom.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        .dark-mode .bg-light {
-            background-color: #343a40 !important;
-            color: #f8f9fa !important;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .dark-mode .navbar-white {
-            background-color: #343a40 !important;
-            color: #f8f9fa !important;
+        .card-title {
+            margin: 0;
+        }
+        .container-fluid {
+            margin-top: 20px;
+        }
+        .display-4 {
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+        .icono-custom {
+            font-size: 80px;
+            color: white;
+            transition: color 0.3s;
+        }
+        .icono-custom:hover {
+            color: #28a745; /* Color success */
         }
     </style>
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-    <script>
-        // Ejemplo de JavaScript para deshabilitar el envío de formularios si hay campos no válidos
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
-                var forms = document.getElementsByClassName('needs-validation');
-                // Bucle sobre ellos y evitar el envío
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script> 
+        console.log("Hi, I'm using the Laravel-AdminLTE package!"); 
 
-        // Lógica para cambiar el tema
-        document.addEventListener('DOMContentLoaded', function() {
-            var themeToggle = document.getElementById('theme-toggle');
-            var theme = localStorage.getItem('theme');
-
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
+        // Gráfico de Balance General
+        var balanceCtx = document.getElementById('balanceChart').getContext('2d');
+        var balanceChart = new Chart(balanceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Activos', 'Pasivos', 'Patrimonio'],
+                datasets: [{
+                    label: 'Balance General (en miles)',
+                    data: [500, 200, 300],
+                    backgroundColor: ['#007bff', '#dc3545', '#ffc107'],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            });
+            }
+        });
+
+        // Gráfico de Estado de Resultados
+        var incomeCtx = document.getElementById('incomeChart').getContext('2d');
+        var incomeChart = new Chart(incomeCtx, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+                datasets: [{
+                    label: 'Ingresos (en miles)',
+                    data: [50, 60, 70, 80, 90, 100],
+                    borderColor: '#28a745',
+                    backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @stop
