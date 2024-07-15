@@ -12,6 +12,7 @@ use App\Http\Controllers\TipoAsientoController;
 use App\Http\Controllers\TipoCuentaController;
 use App\Http\Controllers\DetalleTransaccionController;
 use App\Http\Controllers\SaldoBalanzaController;
+use App\Http\Controllers\TransaccionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,6 +49,8 @@ Route::get('/TipoCuentaEdit', [TipoCuentaController::class, 'index'])->name('tip
 Route::get('/DetalleTransaccionEdit', [DetalleTransaccionController::class, 'index'])->name('deatlletransaccion.index');
 // Ruta para seleccionar cuenta
 Route::get('/SaldoBalanzaEdit', [SaldoBalanzaController::class, 'index'])->name('saldobalanza.index');
+// Ruta para Libro Diario
+Route::get('/LibroDiario', [TransaccionController::class, 'index'])->name('saldobalanza.index');
 
 
 

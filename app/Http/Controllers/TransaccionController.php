@@ -17,6 +17,34 @@ class TransaccionController extends Controller
         *
         * @return \Illuminate\Http\Response
         */
+
+
+
+         
+        public function index()
+        {
+            $response = Http::get("$this->serverapi/LibroDiario");
+        
+            if ($response->successful()) {
+                // Decodificar la respuesta JSON
+                $DatoLibroDiario = $response->json();
+        
+                // Asumiendo que la API devuelve una lista de objetos, asegurarse de convertirlos a objetos stdClass
+                $objetosLibroDiario = [];
+                foreach ($DatoLibroDiario as $item) {
+                    $objetosLibroDiario[] = (object) $item;
+                }
+        
+                // Pasar directamente el resultado a la vista como una colección de objetos
+                return view('Contabilidad.LibroDiario')->with('ResulLibroDiario', $objetosLibroDiario);
+            } else {
+                // Manejar errores de manera específica si es necesario
+                return response()->json(['error' => 'No se encontró ningún Libro Diario'], $response->status());
+            }
+        }
+        
+
+
         public function create()
         {
             // Llamada a la API para obtener los tipos de asiento
@@ -35,14 +63,14 @@ class TransaccionController extends Controller
             $response = Http::get("$this->serverapi/sub-subcuentas");
             $DatoSubSubCuenta = $response->json();
 
-             // Llamada a la API para obtener las Catalogo
-             $response = Http::get("$this->serverapi/catalogoEdit");
-             $DatosCatalogoEdit = $response->json();
+             // Llamada a la API para obtener las LibroiIario
+             $response = Http::get("$this->serverapi/LibroiIarioEdit");
+             $DatosLibroiIarioEdit = $response->json();
 
 
         
             // Retornar la vista con los datos obtenidos
-            return view('Contabilidad.RegistroTransacciones', compact('tiposAsiento', 'DatoCuenta', 'DatoSubCuenta', 'DatoSubSubCuenta','DatosCatalogoCuentas','DatosCatalogoEdit'));
+            return view('Contabilidad.RegistroTransacciones', compact('tiposAsiento', 'DatoCuenta', 'DatoSubCuenta', 'DatoSubSubCuenta','DatosLibroiIarioCuentas','DatosLibroiIarioEdit'));
         }
         
 

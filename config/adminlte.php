@@ -391,10 +391,10 @@ return [
                 ],
                 
                 [
-                    'text' => 'Pago de Residentes',
+                    'text' => 'Libro Diario',
                     'icon' => 'fas fa-fw fa-sharp fa-light fa-check',
                     'icon_color' => 'teal',
-                    'url' => 'PagoResidente',
+                    'url' => '/LibroDiario',
                 ],
                 [
                     'text' => 'Cuentas po cobrar',
