@@ -61,4 +61,4 @@ Route::get('/LibroDiario', [TransaccionController::class, 'index'])->name('saldo
 // Ruta para seleccionar Catalogo de cuenta
 Route::get('/transacciones/create', [TransaccionController::class, 'create'])->name('transacciones.create');
 // Ruta para seleccionar Catalogo de cuenta
-Route::get('/transacciones/store', [TransaccionController::class, 'store'])->name('transacciones.store');
+Route::post('/transacciones/store', [TransaccionController::class, 'store'])->name('transacciones.store');
