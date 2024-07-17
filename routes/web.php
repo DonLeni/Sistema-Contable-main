@@ -58,7 +58,7 @@ Route::get('/SaldoBalanzaEdit', [SaldoBalanzaController::class, 'index'])->name(
 Route::get('/LibroDiario', [TransaccionController::class, 'index'])->name('saldobalanza.index');
 
 
-// Ruta para seleccionar Catalogo de cuenta
+// Ruta para transaccion
 Route::get('/transacciones/create', [TransaccionController::class, 'create'])->name('transacciones.create');
-// Ruta para seleccionar Catalogo de cuenta
-Route::get('/transacciones/store', [TransaccionController::class, 'store'])->name('transacciones.store');
+// Ruta para Guardar transacciones
+Route::post('/transacciones/store', [TransaccionController::class, 'store'])->name('transacciones.store');
